@@ -36,7 +36,7 @@ jobs:
         with:
           name: jobboard-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
-          retention-days: 14
+          retention-days: 90
 
       - name: Build release APK (unsigned)
         run: ./gradlew :app:assembleRelease --no-daemon
@@ -46,4 +46,4 @@ jobs:
         with:
           name: jobboard-release-apk
           path: app/build/outputs/apk/release/app-release-unsigned.apk
-          retention-days: 14
+          retention-days: 90
