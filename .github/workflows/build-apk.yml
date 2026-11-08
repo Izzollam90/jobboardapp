@@ -1,0 +1,49 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main, 'vibe/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install SDK packages
+        run: |
+          sdkmanager "platforms;android-34" "build-tools;34.0.0" "platform-tools"
+          yes | sdkmanager --licenses
+
+      - name: Build debug APK
+        run: ./gradlew :app:assembleDebug --no-daemon --stacktrace
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jobboard-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 14
+
+      - name: Build release APK (unsigned)
+        run: ./gradlew :app:assembleRelease --no-daemon
+
+      - name: Upload release APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jobboard-release-apk
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          retention-days: 14
