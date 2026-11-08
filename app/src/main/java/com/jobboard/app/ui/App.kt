@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Dashboard
 import androidx.compose.material.icons.filled.ListAlt
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -108,6 +109,7 @@ fun JobBoardApp(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AppTopBar(settings: AppSettings) {
     androidx.compose.material3.TopAppBar(
@@ -132,6 +134,7 @@ private fun AppTopBar(settings: AppSettings) {
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun BottomNav(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()

@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.jobboard.app.data.Job
 import com.jobboard.app.data.JobStatus
 
@@ -96,7 +97,7 @@ private fun DetailRow(label: String, value: String) {
             label.uppercase(),
             style = MaterialTheme.typography.labelSmall,
             fontWeight = FontWeight.SemiBold,
-            letterSpacing = 1.5.dp.value.sp,
+            letterSpacing = 1.5.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Spacer(Modifier.height(2.dp))
